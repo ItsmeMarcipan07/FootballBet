@@ -9,6 +9,7 @@ public class Bet {
     private boolean isWon;
     private double odds; // Добавяме поле за коефициент
 
+
     public Bet(int id, int userId, int matchId, double betAmount, String betType, boolean isWon, double odds) {
         this.id = id;
         this.userId = userId;
@@ -17,6 +18,7 @@ public class Bet {
         this.betType = betType;
         this.isWon = isWon;
         this.odds = odds; // Инициализиране на коефициента
+
     }
 
     // Getters и Setters

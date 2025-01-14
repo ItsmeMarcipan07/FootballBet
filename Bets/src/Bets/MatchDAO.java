@@ -19,7 +19,8 @@ public class MatchDAO {
                         rs.getDouble("coef_team1"),
                         rs.getDouble("coef_draw"),
                         rs.getDouble("coef_team2"),
-                        rs.getString("result")
+                        rs.getString("result"),
+                        rs.getString("status")
                 ));
             }
         } catch (SQLException e) {
@@ -43,6 +44,17 @@ public class MatchDAO {
         }
         System.out.println(result);
         return result;
+    }
+
+    public static void updateMatch(int matchId) {
+        String sql = "UPDATE Matches SET status = ? WHERE id = ?";
+        try (Connection conn = Database.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "Concluded");
+            stmt.setInt(2, matchId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -8,8 +8,9 @@ public class Match {
     private double coefDraw;
     private double coefTeam2;
     private String result;
+    private String status;
 
-    public Match(int id, String team1, String team2, double coefTeam1, double coefDraw, double coefTeam2, String result) {
+    public Match(int id, String team1, String team2, double coefTeam1, double coefDraw, double coefTeam2, String result, String status) {
         this.id = id;
         this.team1 = team1;
         this.team2 = team2;
@@ -17,6 +18,7 @@ public class Match {
         this.coefDraw = coefDraw;
         this.coefTeam2 = coefTeam2;
         this.result = result;
+        this.status = status;
     }
 
     // Getters и Setters
@@ -31,5 +33,7 @@ public class Match {
     public void setResult(String result) {
         this.result = result;
     }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }
 
