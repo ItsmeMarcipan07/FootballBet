@@ -316,9 +316,11 @@ public class MainApp extends Application {
         TextField amountField = new TextField();
         amountField.setPromptText("Bet Amount");
         Label balanceLabel = new Label("Balance: " + currentUser.getBalance() + " BGN");
+        balanceLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         ComboBox<String> betTypeBox = new ComboBox<>();
         betTypeBox.getItems().addAll("Team1", "Draw", "Team2");
         Label infoLabel = new Label("Place Bet on:  " + match.getTeam1() + " vs " + match.getTeam2());
+        infoLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
         // Добавяне на информация за коефициентите
         double oddsTeam1 = match.getCoefTeam1();
@@ -326,6 +328,7 @@ public class MainApp extends Application {
         double oddsTeam2 = match.getCoefTeam2();
 
         Label oddsLabel = new Label("Odds: " + "Team1: " + oddsTeam1 + ", Draw: " + oddsDraw + ", Team2: " + oddsTeam2);
+        oddsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
         Button confirmButton = new Button("Place Bet");
         confirmButton.setOnAction(e -> {
