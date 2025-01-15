@@ -33,35 +33,16 @@ CREATE TABLE IF NOT EXISTS `bets` (
   KEY `match_id` (`match_id`),
   CONSTRAINT `bets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `bets_ibfk_2` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table betting_app.bets: ~24 rows (approximately)
+-- Dumping data for table betting_app.bets: ~2 rows (approximately)
 DELETE FROM `bets`;
 INSERT INTO `bets` (`id`, `user_id`, `match_id`, `bet_amount`, `bet_type`, `is_won`, `odds`) VALUES
-	(1, 1, 1, 10, 'Team1', 0, NULL),
-	(3, 1, 1, 10, 'Team1', 0, NULL),
-	(5, 1, 1, 10, 'Team1', 0, 2.5),
-	(6, 1, 1, 10, 'Team2', 0, 2.8),
-	(7, 1, 4, 100, 'Team1', 1, 1.1),
-	(8, 1, 4, 100, 'Team1', 1, 1.1),
-	(9, 1, 4, 15, 'Draw', 1, 1.1),
-	(10, 1, 4, 10, 'Team1', 1, 1.1),
-	(11, 1, 4, 10, 'Team1', 1, 1.1),
-	(12, 1, 4, 10, 'Team1', 1, 1.1),
-	(13, 1, 4, 100, 'Team1', 1, 1.1),
-	(14, 1, 4, 100, 'Team1', 1, 1.1),
-	(15, 1, 4, 10, 'Team2', 1, 1.1),
-	(16, 1, 4, 100, 'Team2', 1, 1.1),
-	(17, 1, 4, 100, 'Draw', 1, 1.1),
-	(18, 1, 4, 100, 'Team1', 1, 1.1),
-	(19, 1, 4, 100, 'Team1', 1, 1.1),
-	(20, 1, 4, 100, 'Team1', 1, 1.1),
-	(21, 1, 4, 100, 'Team1', 1, 1.1),
-	(22, 1, 4, 1, 'Team1', 1, 1.1),
-	(23, 1, 4, 100, 'Team1', 1, 1.1),
-	(24, 1, 4, 100, 'Team1', 1, 1.1),
-	(25, 1, 4, 1, 'Team1', 1, 1.1),
-	(26, 1, 2, 100, 'Team1', 1, 1.8);
+	(27, 1, 5, 100, 'Team1', 0, 1.1),
+	(28, 9, 5, 100, 'Team1', 0, 1.1),
+	(29, 9, 5, 100, 'Team1', 0, 1.1),
+	(30, 9, 1, 100, 'Team1', 1, 2.5),
+	(31, 9, 2, 100, 'Team1', 1, 1.8);
 
 -- Dumping structure for table betting_app.matches
 CREATE TABLE IF NOT EXISTS `matches` (
@@ -72,16 +53,18 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `coef_draw` double NOT NULL,
   `coef_team2` double NOT NULL,
   `result` enum('Team1','Draw','Team2') DEFAULT NULL,
+  `status` enum('Active','Concluded') NOT NULL DEFAULT 'Active',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table betting_app.matches: ~3 rows (approximately)
+-- Dumping data for table betting_app.matches: ~5 rows (approximately)
 DELETE FROM `matches`;
-INSERT INTO `matches` (`id`, `team1`, `team2`, `coef_team1`, `coef_draw`, `coef_team2`, `result`) VALUES
-	(1, 'Team A', 'Team B', 2.5, 3, 2.8, NULL),
-	(2, 'Team C', 'Team D', 1.8, 3.5, 4, 'Team2'),
-	(3, 'Team E', 'Team F', 2.2, 3.2, 3, NULL),
-	(4, 'Levski', 'CSKA', 1.1, 1.1, 1.1, 'Team1');
+INSERT INTO `matches` (`id`, `team1`, `team2`, `coef_team1`, `coef_draw`, `coef_team2`, `result`, `status`) VALUES
+	(1, 'Team A', 'Team B', 2.5, 3, 2.8, 'Team1', 'Concluded'),
+	(2, 'Team C', 'Team D', 1.8, 3.5, 4, 'Team1', 'Concluded'),
+	(3, 'Team E', 'Team F', 2.2, 3.2, 3, NULL, 'Active'),
+	(4, 'Levski', 'CSKA', 1.1, 1.1, 1.1, 'Team1', 'Active'),
+	(5, 'team1', 'team2', 1.1, 1.1, 1.1, 'Draw', 'Concluded');
 
 -- Dumping structure for table betting_app.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -92,18 +75,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table betting_app.users: ~6 rows (approximately)
+-- Dumping data for table betting_app.users: ~11 rows (approximately)
 DELETE FROM `users`;
 INSERT INTO `users` (`id`, `username`, `password`, `balance`, `email`) VALUES
-	(1, 'admin', 'admin', 97343, NULL),
+	(1, 'admin', 'admin', 97243, 'admin@admin.com'),
 	(2, 'test', 'test', 100, 'test'),
 	(3, 'test1', 'test1', 100, 'test1'),
 	(4, 'test2', 'test2', 100, 'test2'),
 	(6, 'test5', '', 100, ''),
 	(7, 'test7', 'test7', 100, 'test7'),
-	(8, 'sadfadsfd', 'asdfasdsa', 0, 'sdfasd');
+	(8, 'sadfadsfd', 'asdfasdsa', 0, 'sdfasd'),
+	(9, '.', '.', 999600, 'test@test.test'),
+	(10, 'testtest', 'testtest', 0, 'testtest'),
+	(11, 'dsdfsd', 'dsfsd', 0, 'sdfsdf'),
+	(12, 'admin1', 'admin', 0, 'admin1@admin.com');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
