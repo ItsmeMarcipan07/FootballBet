@@ -16,11 +16,9 @@ import java.sql.*;
 public class RegisterScreen {
 
     private VBox layout;
-    private User currentUser;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/betting_app";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "";
-    private Bet bet;
 
     public RegisterScreen(Stage primaryStage) {
         Label titleLabel = new Label("Registration section");
@@ -45,18 +43,15 @@ public class RegisterScreen {
             String email = emailField.getText();
 
             if (validateRegister(username, password, email)) {
-                // Показваме alert за успешна регистрация
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Registration Successful");
                 alert.setHeaderText(null);
                 alert.setContentText("Successfully registered! Please log in to continue.");
                 alert.showAndWait();
 
-                // Пренасочваме към началния екран (login screen)
                 LoginScreen loginScreen = new LoginScreen(primaryStage);
                 primaryStage.setScene(new Scene(loginScreen.getLayout(), 300, 200));
             } else {
-                // Показваме съобщение за неуспех
                 messageLabel.setText("Registration failed. Please try again.");
             }
         });
@@ -76,7 +71,6 @@ public class RegisterScreen {
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
              PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
 
-            // Проверка за съществуващ потребител
             checkStmt.setString(1, username);
             checkStmt.setString(2, email);
             try (ResultSet rs = checkStmt.executeQuery()) {
@@ -91,7 +85,6 @@ public class RegisterScreen {
                 }
             }
 
-            // Ако потребителят не съществува, добавяме нов запис
             if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Validation Error");

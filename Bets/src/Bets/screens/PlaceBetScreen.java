@@ -14,13 +14,9 @@ import Bets.dao.UserDAO;
 public class PlaceBetScreen {
 
     private VBox layout;
-    private User currentUser;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/betting_app";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = "";
-    private Bet bet;
 
     public PlaceBetScreen(Stage primaryStage, User currentUser, Match match) {
+        MatchDAO.generateOddsForMatch(match);
         TextField amountField = new TextField();
         amountField.setPromptText("Bet Amount");
         Label balanceLabel = new Label("Balance: " + currentUser.getBalance() + " BGN");
@@ -56,9 +52,9 @@ public class PlaceBetScreen {
             if (betAmount <= currentUser.getBalance()) {
                 BetDAO.placeBet(currentUser.getId(), match.getId(), betAmount, betType, selectedOdds);
                 currentUser.setBalance(currentUser.getBalance() - betAmount);
-                UserDAO.updateUserBalance(currentUser);
                 BetDAO.updateWon(MatchDAO.simulateMatch(match), match, betType, currentUser, betAmount);
                 MatchDAO.updateMatch(match.getId());
+                UserDAO.updateUserBalance(currentUser);
 
                 HomeScreen homeScreen = new HomeScreen(primaryStage, currentUser);
                 primaryStage.setScene(new Scene(homeScreen.getLayout(), 400, 300));

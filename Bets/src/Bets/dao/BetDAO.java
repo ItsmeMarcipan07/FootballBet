@@ -22,7 +22,6 @@ public class BetDAO {
             stmt.setInt(2, matchId);
             stmt.setDouble(3, betAmount);
             stmt.setString(4, betType);
-            //stmt.setDouble(5, MatchDAO.simulateMatch(match));
             stmt.setDouble(5, odds); // Добавяме коефициента при запис в базата
 
             stmt.executeUpdate();

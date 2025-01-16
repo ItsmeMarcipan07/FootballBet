@@ -42,7 +42,6 @@ public class LoginScreen {
             System.out.println("Username: " + username);
             System.out.println("Password: " + password);
 
-            // Validирай логина и получи потребителя
             currentUser = validateLogin(username, password);
             if (currentUser != null) {
                 System.out.println("Login successful!");
@@ -76,13 +75,12 @@ public class LoginScreen {
                 String dbPassword = rs.getString("password");
                 double balance = rs.getDouble("balance");
 
-                // Създаване на обект User с 4 параметъра
                 return new User(id, dbUsername, dbPassword, balance);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null; // Връщаме null ако няма потребител с тези данни
+        return null;
     }
     public VBox getLayout() {
         return layout;

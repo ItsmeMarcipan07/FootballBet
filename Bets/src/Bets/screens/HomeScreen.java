@@ -12,11 +12,6 @@ import javafx.stage.Stage;
 public class HomeScreen {
 
     private VBox layout;
-    private User currentUser;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/betting_app";
-    private static final String DB_USER = "root";
-    private static final String DB_PASS = "";
-    private Bet bet;
     public HomeScreen(Stage primaryStage, User currentUser) {
         Label welcomeLabel = new Label("Welcome, " + currentUser.getUsername());
         welcomeLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");

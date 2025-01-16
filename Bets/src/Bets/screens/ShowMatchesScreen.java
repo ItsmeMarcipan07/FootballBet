@@ -28,7 +28,6 @@ public class ShowMatchesScreen {
         concludedMatchesLayout.getChildren().add(concludedLabel);
 
         for (Match match : matches) {
-            // Принтиране за дебъг
             System.out.println("Match Status: " + match.getStatus());
 
             Button matchButton = new Button(match.getTeam1() + " vs " + match.getTeam2());
