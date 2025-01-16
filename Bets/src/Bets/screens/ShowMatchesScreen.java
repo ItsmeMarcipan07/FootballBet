@@ -1,15 +1,14 @@
 package Bets.screens;
 
-import Bets.User;
+import Bets.models.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.Match;
-import Bets.MatchDAO;
+import Bets.models.Match;
+import Bets.dao.MatchDAO;
 import java.util.List;
-import Bets.screens.PlaceBetScreen;
 
 public class ShowMatchesScreen {
 

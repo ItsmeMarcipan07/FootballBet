@@ -1,14 +1,14 @@
 package Bets.screens;
 
-import Bets.BetDAO;
+import Bets.dao.BetDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.Bet;
-import Bets.User;
+import Bets.models.Bet;
+import Bets.models.User;
 
 import java.util.List;
 

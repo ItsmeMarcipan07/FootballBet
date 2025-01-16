@@ -4,12 +4,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.Bet;
-import Bets.User;
-import Bets.Match;
-import Bets.BetDAO;
-import Bets.MatchDAO;
-import Bets.UserDAO;
+import Bets.models.Bet;
+import Bets.models.User;
+import Bets.models.Match;
+import Bets.dao.BetDAO;
+import Bets.dao.MatchDAO;
+import Bets.dao.UserDAO;
 
 public class PlaceBetScreen {
 
@@ -54,11 +54,12 @@ public class PlaceBetScreen {
             }
 
             if (betAmount <= currentUser.getBalance()) {
-                BetDAO.placeBet(currentUser.getId(), match.getId(), betAmount, betType,selectedOdds);
+                BetDAO.placeBet(currentUser.getId(), match.getId(), betAmount, betType, selectedOdds);
                 currentUser.setBalance(currentUser.getBalance() - betAmount);
                 UserDAO.updateUserBalance(currentUser);
-                BetDAO.updateWon(MatchDAO.simulateMatch(match), match.getId(), betType);
+                BetDAO.updateWon(MatchDAO.simulateMatch(match), match, betType, currentUser, betAmount);
                 MatchDAO.updateMatch(match.getId());
+
                 HomeScreen homeScreen = new HomeScreen(primaryStage, currentUser);
                 primaryStage.setScene(new Scene(homeScreen.getLayout(), 400, 300));
             } else {

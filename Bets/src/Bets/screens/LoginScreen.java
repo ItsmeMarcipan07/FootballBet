@@ -7,13 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.screens.RegisterScreen;
-import Bets.screens.HomeScreen;
-import Bets.User;
-import Bets.Bet;
-import java.awt.*;
+import Bets.models.User;
+import Bets.models.Bet;
+
 import java.sql.*;
-import java.util.List;
 
 public class LoginScreen {
 

@@ -1,18 +1,13 @@
 package Bets.screens;
 
-import Bets.Bet;
-import Bets.User;
+import Bets.models.Bet;
+import Bets.models.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.screens.WithdrawScreen;
-import Bets.screens.DepositScreen;
-import Bets.screens.ShowMatchesScreen;
-import Bets.screens.ShowBetHistoryScreen;
-import Bets.screens.PlaceBetScreen;
 
 public class HomeScreen {
 
