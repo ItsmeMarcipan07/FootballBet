@@ -71,17 +71,17 @@ public class BetDAO {
         String sql = "UPDATE Users SET balance = ? WHERE id = ?";
         try (Connection conn = Database.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             if(result.equals("Team1")) {
-                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getCoefTeam1()));
+                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getOddTeam1()));
                 stmt.setInt(2, currentUser.getId());
                 stmt.executeUpdate();
             }
             else if(result.equals("Team2")) {
-                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getCoefTeam1()));
+                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getOddTeam2()));
                 stmt.setInt(2, currentUser.getId());
                 stmt.executeUpdate();
             }
             else {
-                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getCoefTeam1()));
+                stmt.setDouble(1, currentUser.getBalance() + (betAmount * match.getOddDraw()));
                 stmt.setInt(2, currentUser.getId());
                 stmt.executeUpdate();
             }

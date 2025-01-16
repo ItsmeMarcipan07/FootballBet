@@ -28,7 +28,7 @@ public class WithdrawScreen {
         Button backButton = new Button("Back");
 
         withdrawButton.setOnAction(e -> {
-            int amount = Integer.parseInt(amountField.getText());
+            double amount = Double.parseDouble(amountField.getText());
             if (amount <= currentUser.getBalance()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert Box");

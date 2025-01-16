@@ -25,7 +25,7 @@ public class DepositScreen {
         Button backButton = new Button("Back");
 
         depositButton.setOnAction(e -> {
-            int amount = Integer.parseInt(amountField.getText());
+            double amount = Double.parseDouble(amountField.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert Box");
             alert.setHeaderText(null);

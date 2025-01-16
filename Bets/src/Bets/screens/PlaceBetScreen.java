@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Bets.models.Bet;
 import Bets.models.User;
 import Bets.models.Match;
 import Bets.dao.BetDAO;
@@ -27,9 +26,9 @@ public class PlaceBetScreen {
         infoLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
         // Добавяне на информация за коефициентите
-        double oddsTeam1 = match.getCoefTeam1();
-        double oddsDraw = match.getCoefDraw();
-        double oddsTeam2 = match.getCoefTeam2();
+        double oddsTeam1 = match.getOddTeam1();
+        double oddsDraw = match.getOddDraw();
+        double oddsTeam2 = match.getOddTeam2();
 
         Label oddsLabel = new Label("Odds: " + "Team1: " + oddsTeam1 + ", Draw: " + oddsDraw + ", Team2: " + oddsTeam2);
         oddsLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
