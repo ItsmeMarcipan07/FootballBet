@@ -19,9 +19,9 @@ public class MatchDAO {
                         rs.getInt("id"),
                         rs.getString("team1"),
                         rs.getString("team2"),
-                        rs.getDouble("coef_team1"),
-                        rs.getDouble("coef_draw"),
-                        rs.getDouble("coef_team2"),
+                        rs.getDouble("odds_team1"),
+                        rs.getDouble("odds_draw"),
+                        rs.getDouble("odds_team2"),
                         rs.getString("result"),
                         rs.getString("status")
                 ));
@@ -63,16 +63,16 @@ public class MatchDAO {
     public static void generateOddsForMatch(Match match) {
         Random random = new Random();
 
-        double coefTeam1 = Math.round((1.5 + (3.5 - 1.5) * random.nextDouble()) * 100.0) / 100.0;
-        double coefDraw = Math.round((2.0 + (4.0 - 2.0) * random.nextDouble()) * 100.0) / 100.0;
-        double coefTeam2 = Math.round((1.5 + (3.5 - 1.5) * random.nextDouble()) * 100.0) / 100.0;
+        double oddsTeam1 = Math.round((1.5 + (3.5 - 1.5) * random.nextDouble()) * 100.0) / 100.0;
+        double oddsDraw = Math.round((2.0 + (4.0 - 2.0) * random.nextDouble()) * 100.0) / 100.0;
+        double oddsTeam2 = Math.round((1.5 + (3.5 - 1.5) * random.nextDouble()) * 100.0) / 100.0;
 
-        String sql = "UPDATE Matches SET coef_team1 = ?, coef_draw = ?, coef_team2 = ? WHERE id = ?";
+        String sql = "UPDATE Matches SET odds_team1 = ?, odds_draw = ?, odds_team2 = ? WHERE id = ?";
 
         try (Connection conn = Database.connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setDouble(1, coefTeam1);
-            stmt.setDouble(2, coefDraw);
-            stmt.setDouble(3, coefTeam2);
+            stmt.setDouble(1, oddsTeam1);
+            stmt.setDouble(2, oddsDraw);
+            stmt.setDouble(3, oddsTeam2);
             stmt.setInt(4, match.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {

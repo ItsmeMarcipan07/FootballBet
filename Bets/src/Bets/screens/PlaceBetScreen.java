@@ -48,7 +48,7 @@ public class PlaceBetScreen {
                 selectedOdds = oddsTeam2;
             }
 
-            if (betAmount <= currentUser.getBalance()) {
+            if (0 < betAmount && betAmount <= currentUser.getBalance()) {
                 BetDAO.placeBet(currentUser.getId(), match.getId(), betAmount, betType, selectedOdds);
                 currentUser.setBalance(currentUser.getBalance() - betAmount);
                 BetDAO.updateWon(MatchDAO.simulateMatch(match), match, betType, currentUser, betAmount);

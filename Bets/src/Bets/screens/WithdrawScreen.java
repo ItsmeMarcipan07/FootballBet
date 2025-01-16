@@ -29,7 +29,7 @@ public class WithdrawScreen {
 
         withdrawButton.setOnAction(e -> {
             double amount = Double.parseDouble(amountField.getText());
-            if (amount <= currentUser.getBalance()) {
+            if (amount > 0 && amount <= currentUser.getBalance()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Alert Box");
             alert.setHeaderText(null);

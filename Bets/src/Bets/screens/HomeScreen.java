@@ -15,7 +15,7 @@ public class HomeScreen {
     public HomeScreen(Stage primaryStage, User currentUser) {
         Label welcomeLabel = new Label("Welcome, " + currentUser.getUsername());
         welcomeLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        Label balanceLabel = new Label("Balance: " + currentUser.getBalance() + " BGN");
+        Label balanceLabel = new Label("Balance: " + Math.round(currentUser.getBalance() * 100)/100.0 + " BGN");
         balanceLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         Button logoutButton = new Button("Logout");
         Button withdrawButton = new Button("Withdraw");
